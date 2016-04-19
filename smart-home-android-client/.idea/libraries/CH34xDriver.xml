@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="CH34xDriver">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/CH34xDriver.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

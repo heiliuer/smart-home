@@ -1,0 +1,276 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        04/17/2016  00:41:41  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+D:\PROGRAM FILES (X86)\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\smarthome.obj TO .\Objects\c51 PRINT (.
+>> \Listings\c51.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\smarthome.obj (SMARTHOME)
+  D:\PROGRAM FILES (X86)\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+  D:\PROGRAM FILES (X86)\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+
+
+LINK MAP OF MODULE:  .\Objects\c51 (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0007H     UNIT         ?DT?SMARTHOME
+            DATA    000FH     0004H     UNIT         _DATA_GROUP_
+            IDATA   0013H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0020H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+                    0026H     07DAH                  *** GAP ***
+            CODE    0800H     008CH     UNIT         ?C_C51STARTUP
+            CODE    088CH     006DH     UNIT         ?PR?UART_SER?SMARTHOME
+            CODE    08F9H     0053H     UNIT         ?PR?MAIN?SMARTHOME
+            CODE    094CH     0019H     UNIT         ?C?LIB_CODE
+            CODE    0965H     0018H     UNIT         ?PR?SENDIODATA?SMARTHOME
+            CODE    097DH     0015H     UNIT         ?PR?_SENDSTR?SMARTHOME
+            CODE    0992H     0010H     UNIT         ?PR?INITUART?SMARTHOME
+            CODE    09A2H     0008H     UNIT         ?PR?_SENDBYTE?SMARTHOME
+            CODE    09AAH     0006H     UNIT         ?PR?RECEIVE_WAIT?SMARTHOME
+            CODE    09B0H     0005H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\c51 (?C_STARTUP)
+
+
+SEGMENT                              DATA_GROUP 
+  +--> CALLED SEGMENT              START    LENGTH
+--------------------------------------------------
+?C_C51STARTUP                      -----    -----
+  +--> ?PR?MAIN?SMARTHOME
+  +--> ?C_INITSEG
+
+?PR?MAIN?SMARTHOME                 000FH    0004H
+  +--> ?PR?INITUART?SMARTHOME
+  +--> ?PR?_SENDBYTE?SMARTHOME
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/17/2016  00:41:41  PAGE 2
+
+
+
+*** NEW ROOT ***************************************************
+
+?PR?UART_SER?SMARTHOME             -----    -----
+  +--> ?PR?RECEIVE_WAIT?SMARTHOME
+  +--> ?PR?SENDIODATA?SMARTHOME
+
+?PR?SENDIODATA?SMARTHOME           -----    -----
+  +--> ?PR?_SENDSTR?SMARTHOME
+
+?PR?_SENDSTR?SMARTHOME             -----    -----
+  +--> ?PR?_SENDBYTE?SMARTHOME
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\c51 (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0800H         SEGMENT       ?C_C51STARTUP
+  I:0013H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0803H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0800H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:0800H         LINE#         133
+  C:0802H         LINE#         134
+  C:0803H         LINE#         135
+  C:0804H         LINE#         136
+  C:0806H         LINE#         185
+  C:0809H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        SMARTHOME
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:09AAH         PUBLIC        receive_wait
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/17/2016  00:41:41  PAGE 3
+
+
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  C:088CH         PUBLIC        UART_SER
+  D:00A8H         PUBLIC        IE
+  B:00A8H.4       PUBLIC        ES
+  D:00B8H         PUBLIC        IP
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  C:09A2H         PUBLIC        _SendByte
+  D:0008H         PUBLIC        times
+  C:08F9H         PUBLIC        main
+  D:000AH         PUBLIC        send
+  D:0099H         PUBLIC        SBUF
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  C:0965H         PUBLIC        sendIOData
+  C:097DH         PUBLIC        _SendStr
+  D:008DH         PUBLIC        TH1
+  C:0992H         PUBLIC        InitUART
+  B:0088H.6       PUBLIC        TR1
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          INITUART
+  C:0992H         LINE#         14
+  C:0992H         LINE#         15
+  C:0992H         LINE#         16
+  C:0995H         LINE#         17
+  C:0998H         LINE#         18
+  C:099BH         LINE#         19
+  C:099DH         LINE#         20
+  C:099FH         LINE#         21
+  C:09A1H         LINE#         22
+  -------         ENDPROC       INITUART
+  -------         PROC          MAIN
+  -------         DO            
+  D:000FH         SYMBOL        i
+  D:0011H         SYMBOL        j
+  -------         ENDDO         
+  C:08F9H         LINE#         27
+  C:08F9H         LINE#         28
+  C:08F9H         LINE#         29
+  C:08FFH         LINE#         30
+  C:0902H         LINE#         32
+  C:0905H         LINE#         33
+  C:0907H         LINE#         34
+  C:0909H         LINE#         35
+  C:090BH         LINE#         37
+  C:090EH         LINE#         38
+  C:0911H         LINE#         39
+  C:0914H         LINE#         40
+  C:0917H         LINE#         41
+  C:0917H         LINE#         42
+  C:091CH         LINE#         43
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/17/2016  00:41:41  PAGE 4
+
+
+  C:0930H         LINE#         44
+  C:0936H         LINE#         45
+  -------         ENDPROC       MAIN
+  -------         PROC          _SENDBYTE
+  D:0007H         SYMBOL        dat
+  C:09A2H         LINE#         53
+  C:09A2H         LINE#         54
+  C:09A2H         LINE#         55
+  C:09A4H         LINE#         56
+  C:09A7H         LINE#         57
+  C:09A9H         LINE#         58
+  -------         ENDPROC       _SENDBYTE
+  -------         PROC          _SENDSTR
+  D:0001H         SYMBOL        s
+  C:097DH         LINE#         62
+  C:097DH         LINE#         63
+  C:097DH         LINE#         64
+  C:0985H         LINE#         65
+  C:0985H         LINE#         66
+  C:0988H         LINE#         67
+  C:098FH         LINE#         68
+  C:0991H         LINE#         69
+  -------         ENDPROC       _SENDSTR
+  -------         PROC          RECEIVE_WAIT
+  C:09AAH         LINE#         72
+  C:09AAH         LINE#         73
+  C:09AAH         LINE#         74
+  C:09ADH         LINE#         75
+  C:09AFH         LINE#         76
+  -------         ENDPROC       RECEIVE_WAIT
+  -------         PROC          SENDIODATA
+  C:0965H         LINE#         78
+  C:0965H         LINE#         79
+  C:0968H         LINE#         80
+  C:096BH         LINE#         81
+  C:096EH         LINE#         82
+  C:0971H         LINE#         83
+  C:0974H         LINE#         84
+  -------         ENDPROC       SENDIODATA
+  -------         PROC          UART_SER
+  C:088CH         LINE#         90
+  C:089FH         LINE#         92
+  C:08A2H         LINE#         93
+  C:08A2H         LINE#         94
+  C:08A4H         LINE#         95
+  C:08B8H         LINE#         96
+  C:08B8H         LINE#         97
+  C:08BBH         LINE#         98
+  C:08BBH         LINE#         99
+  C:08BDH         LINE#         100
+  C:08BDH         LINE#         101
+  C:08C0H         LINE#         102
+  C:08C3H         LINE#         103
+  C:08C3H         LINE#         104
+  C:08C5H         LINE#         105
+  C:08C5H         LINE#         106
+  C:08C8H         LINE#         107
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/17/2016  00:41:41  PAGE 5
+
+
+  C:08CBH         LINE#         108
+  C:08CBH         LINE#         109
+  C:08CDH         LINE#         110
+  C:08CDH         LINE#         111
+  C:08D0H         LINE#         112
+  C:08D3H         LINE#         113
+  C:08D3H         LINE#         114
+  C:08D5H         LINE#         115
+  C:08D5H         LINE#         116
+  C:08D8H         LINE#         117
+  C:08E0H         LINE#         118
+  C:08E3H         LINE#         119
+  C:08E3H         LINE#         120
+  C:08E3H         LINE#         121
+  C:08E3H         LINE#         122
+  C:08E6H         LINE#         123
+  C:08E6H         LINE#         124
+  C:08E8H         LINE#         125
+  C:08E8H         LINE#         126
+  -------         ENDPROC       UART_SER
+  -------         ENDMOD        SMARTHOME
+
+  -------         MODULE        ?C?CLDPTR
+  C:094CH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0121H BYTE (14%) *
+******************************************************************************
+
+Program Size: data=20.0 xdata=0 code=443
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

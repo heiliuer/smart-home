@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="view_gap">#8aaa</color>
+    <color name="mode_text_color">#fefefe</color>
+    <color name="inntrument_text_color">#fefefe</color>
+    <color name="media_center_app_text">#fefefe</color>
+    <color name="media_center_title">#fefefe</color>
+    <color name="number_btn_pressed">#3fff</color>
+    <color name="media_center_drawer_back">#b222</color>
+    <color name="device_list_bg">#f111</color>
+    <color name="tab_txt_selected">#2B62C8</color>
+    <color name="tab_txt_normal">#909090</color>
+
+</resources>

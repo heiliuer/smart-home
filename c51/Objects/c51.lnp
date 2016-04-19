@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\smarthome.obj" 
+TO ".\Objects\c51" 
+PRINT(".\Listings\c51.m51")

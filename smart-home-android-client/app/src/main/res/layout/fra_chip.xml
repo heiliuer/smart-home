@@ -1,0 +1,200 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/txt_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:text="7 6 5 4 3 2 1 0"
+            android:textColor="#f999" />
+
+        <TextView
+            android:id="@+id/txt_receive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查询IO口状态" />
+
+        <LinearLayout
+            android:id="@+id/layout_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/edit_hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="小时"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/edit_minutes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="分钟"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/edit_seconds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="秒"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:text="后执行"
+                android:textColor="#f999"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/edit_cmd_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/cmd_type"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/btn_add_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="确定" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/send_p0_ff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0send_p0_ff" />
+
+            <Button
+                android:id="@+id/send_p0_00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1send_p0_00" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/send_p1_ff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2send_p1_ff" />
+
+            <Button
+                android:id="@+id/send_p1_00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3send_p1_00" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/send_p2_ff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4send_p2_ff" />
+
+            <Button
+                android:id="@+id/send_p2_00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5send_p2_00" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/send_p3_ff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6send_p3_ff" />
+
+            <Button
+                android:id="@+id/send_p3_00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7send_p3_00" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/switch_p10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="p10" />
+
+            <Button
+                android:id="@+id/switch_p11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="p11" />
+
+            <Button
+                android:id="@+id/switch_p12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="p12" />
+
+            <Button
+                android:id="@+id/switch_p13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="p13" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/txt_tasks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <issue id="HandlerLeak" severity="ignore">
+        <ignore path="src/com/heiliuer/view/MainAct.java" />
+        <ignore path="src/com/pbj/service/ServiceMain.java" />
+        <ignore path="src/com/pbj/service/impl/ServiceMain.java" />
+        <ignore path="src/com/pbj/view/frame/FraBase.java" />
+        <ignore path="src/com/pbj/view/frame/PanelInstrument.java" />
+        <ignore path="src/com/pbj/view/frame/ServiceMain.java" />
+        <ignore path="src/com/pbj/view/instrument/InstrumentController.java" />
+        <ignore path="src/com/pbj/view/panel/PanelInstrument.java" />
+        <ignore path="src/com/pbj/view/panel/PanelInstrumentController.java" />
+        <ignore path="src/com/pbj/view/widgt/MultiDirectionSlidingDrawer.java" />
+        <ignore path="src/com/pbj/view/widgt/NumberSelectorView.java" />
+        <ignore path="src/com/pbj/view/widgt/NumberSelectorViewNew.java" />
+        <ignore path="src/com/pbj/view/widgt/TimeSelectorView.java" />
+    </issue>
+    <issue id="InlinedApi">
+        <ignore path="src/com/myhome/frame/ServiceMain.java" />
+    </issue>
+    <issue id="NewApi">
+        <ignore path="src/com/myhome/frame/ServiceMain.java" />
+    </issue>
+</lint>

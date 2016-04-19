@@ -1,0 +1,68 @@
+[
+    {
+        "outputFile": "F:\\Projects\\smart-home\\smart-home-android-client\\_MyLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 506,
+                    "endColumn": 55,
+                    "endOffset": 557
+                },
+                "from": {
+                    "file": "F:\\Projects\\smart-home\\smart-home-android-client\\_MyLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 506,
+                        "endColumn": 55,
+                        "endOffset": 557
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 562,
+                    "endLine": 10,
+                    "endColumn": 12,
+                    "endOffset": 848
+                },
+                "from": {
+                    "file": "F:\\Projects\\smart-home\\smart-home-android-client\\_MyLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 562,
+                        "endLine": 10,
+                        "endColumn": 12,
+                        "endOffset": 848
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 853,
+                    "endLine": 13,
+                    "endColumn": 12,
+                    "endOffset": 1008
+                },
+                "from": {
+                    "file": "F:\\Projects\\smart-home\\smart-home-android-client\\_MyLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 853,
+                        "endLine": 13,
+                        "endColumn": 12,
+                        "endOffset": 1008
+                    }
+                }
+            }
+        ]
+    }
+]

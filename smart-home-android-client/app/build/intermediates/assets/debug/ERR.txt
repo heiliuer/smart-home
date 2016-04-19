@@ -1,0 +1,27 @@
+﻿[ {
+	num : 1,
+	code : "E00",
+	content : "安全销脱落",
+	toSolve : "检查安装开关，并放好安全销"
+
+}, {
+	num : 2,
+	code : "E01",
+	content : "通讯故障",
+	toSolve : "检查连接驱动器连接线"
+}, {
+	num : 3,
+	code : "E02",
+	content : "过压保护",
+	toSolve : "关闭电源再重启，若故障仍发生，更换驱动器"
+}, {
+	num : 32,
+	code : "E20",
+	content : "打开COM失败",
+	toSolve : "检查平板的USB连接线，检查下位机上CH340"
+}, {
+	num : 33,
+	code : "E21",
+	content : "与下位机通讯故障",
+	toSolve : "检查平板的USB连接线"
+} ]

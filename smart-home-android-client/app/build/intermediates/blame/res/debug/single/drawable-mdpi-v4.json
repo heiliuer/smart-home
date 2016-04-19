@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\build\\intermediates\\exploded-aar\\smart-home-android-client\\_MyLibrary\\unspecified\\res\\drawable-mdpi-v4\\ic_launcher.png"
+    },
+    {
+        "merged": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\icon.png",
+        "source": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\src\\main\\res\\drawable-mdpi\\icon.png"
+    }
+]
