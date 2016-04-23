@@ -1,11 +1,5 @@
 package com.myhome.frame;
 
-import java.util.Calendar;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import shared.heiliuer.shared.Utils;
-
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -27,6 +21,12 @@ import com.lidroid.xutils.view.annotation.event.OnLongClick;
 import com.myhome.frame.ServiceMain.OnDataIOListener;
 import com.myhome.service.ComService;
 import com.myhome.utils.MHjUtils;
+
+import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import shared.heiliuer.shared.Utils;
 
 @ContentView(R.layout.fra_chip)
 public class FraChip extends InjectFragment implements OnDataIOListener {
@@ -58,6 +58,7 @@ public class FraChip extends InjectFragment implements OnDataIOListener {
 		setHasOptionsMenu(true);
 		initTimer();
 		serviceMain = ServiceMain.getServiceMain();
+		serviceMain.getComService().send(new byte[] { (byte) 0xaa, (byte) 0xff });
 	}
 
 	private final void initTimer() {
@@ -204,6 +205,7 @@ public class FraChip extends InjectFragment implements OnDataIOListener {
 				handlerView.postDelayed(clearReadDataTxt, 1000);
 			}
 		});
+		data=datas[1];
 	}
 
 	@Override

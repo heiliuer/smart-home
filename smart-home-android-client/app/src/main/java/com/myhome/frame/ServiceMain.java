@@ -1,8 +1,5 @@
 package com.myhome.frame;
 
-import java.util.Vector;
-
-import shared.heiliuer.shared.Utils;
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -15,11 +12,15 @@ import android.os.IBinder;
 import android.os.Message;
 
 import com.myhome.chip.IOHandler;
-import com.myhome.chip.IOReadAndWrite;
 import com.myhome.chip.IOP;
+import com.myhome.chip.IOReadAndWrite;
 import com.myhome.prefrences.PreferencesCommoms;
 import com.myhome.service.ComService;
 import com.myhome.service.bluetooth.BluetoothService;
+
+import java.util.Vector;
+
+import shared.heiliuer.shared.Utils;
 
 /**
  * [常驻] 主要负责命令的转发和解析，模式的控制
@@ -68,7 +69,7 @@ public final class ServiceMain extends Service {
 
 			@Override
 			public boolean postQueryPIO() {
-				return comService.send(new byte[] { (byte) 0xa3, (byte) 0xff });
+				return comService.send(new byte[] { (byte) 0xaa, (byte) 0xff });
 			}
 		};
 	}
@@ -106,6 +107,9 @@ public final class ServiceMain extends Service {
 		 * "->" + ComService.getStateName(stateTo);
 		 * Utils.showNewToast(ServiceMain.this, toastMsg);
 		 */
+		Utils.showToast(ServiceMain.this, "蓝牙：" + comService.getCurrentStateName());
+		//Utils.l("蓝牙：" + comService.getCurrentStateName());
+
 		for (OnComserviceStateChanged l : onComserviceStateChangeds) {
 			l.comServiceStateChange(stateFrom, stateTo);
 		}

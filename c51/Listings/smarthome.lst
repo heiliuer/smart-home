@@ -1,4 +1,4 @@
-C51 COMPILER V9.55   SMARTHOME                                                             04/17/2016 00:41:41 PAGE 1   
+C51 COMPILER V9.55   SMARTHOME                                                             04/24/2016 02:00:54 PAGE 1   
 
 
 C51 COMPILER V9.55, COMPILATION OF MODULE SMARTHOME
@@ -11,147 +11,205 @@ line level    source
    1          #include<reg52.h>               
    2          
    3          
-   4          
+   4          //函数声明 
    5          void SendStr(unsigned char *s);
-   6          
-   7          unsigned int times=0;
+   6          void DelayUs2x(unsigned char t);
+   7          void DelayMs(unsigned char t);
    8          
-   9          unsigned char send[5];
+   9          unsigned int times=0;
   10          
-  11          /*------------------------------------------------
-  12                              串口初始化
-  13          ------------------------------------------------*/
-  14          void InitUART  (void)
-  15          {
-  16   1          SCON  = 0x50;           // SCON: 模式 1, 8-bit UART, 使能接收  
-  17   1          TMOD |= 0x20;               // TMOD: timer 1, mode 2, 8-bit 重装
-  18   1          TH1   = 0xFD;               // TH1:  重装值 9600 波特率 晶振 11.0592MHz  
-  19   1        TR1=1; //启动定时器                
-  20   1          EA    = 1;                  //打开总中断
-  21   1          ES    = 1;                  //打开串口中断
-  22   1      }
-  23          void SendByte(unsigned char dat);                            
-  24          /*------------------------------------------------
-  25                              主函数
-  26          ------------------------------------------------*/
-  27          void main (void)
-  28          {
-  29   1        int i=100,j;
-  30   1        InitUART();
-  31   1        //先输出0，再输出1，才能真正输出
-  32   1          P0=0x00;
-  33   1        P1=0x00;
-  34   1        P2=0x00;
-  35   1        P3=0x00;
-  36   1      
-  37   1        P0=0xff;
-  38   1        P1=0xff;
-  39   1        P2=0xff;
-  40   1        P3=0xff;
-  41   1        while (1){
-  42   2          SendByte(0xff);
-  43   2          while(i-->0){
-  44   3            j=100;
-  45   3            while(j-->0);
-  46   3          }
-  47   2        }
-  48   1      }
-  49          
-  50          /*------------------------------------------------
-  51                              发送一个字节
-  52          ------------------------------------------------*/
-  53          void SendByte(unsigned char dat)
-  54          {
-C51 COMPILER V9.55   SMARTHOME                                                             04/17/2016 00:41:41 PAGE 2   
+  11          unsigned char send[5];
+  12          
+  13          sbit KEY1=P0^0;  //定义按键输入端口
+  14          sbit KEY2=P0^1;  //定义按键输入端口
+  15          sbit LED1=P1^0;
+  16          sbit LED2=P1^1;
+  17          int flag1=1;
+  18          int flag2=1;
+  19          
+  20          /*------------------------------------------------
+  21                              串口初始化
+  22          ------------------------------------------------*/
+  23          void InitUART  (void)
+  24          {
+  25   1          SCON  = 0x50;           // SCON: 模式 1, 8-bit UART, 使能接收  
+  26   1          TMOD |= 0x20;               // TMOD: timer 1, mode 2, 8-bit 重装
+  27   1          TH1   = 0xFD;               // TH1:  重装值 9600 波特率 晶振 11.0592MHz  
+  28   1        TR1=1; //启动定时器                
+  29   1          EA    = 1;                  //打开总中断
+  30   1          ES    = 1;                  //打开串口中断
+  31   1      }
+  32          void SendByte(unsigned char dat);                            
+  33          /*------------------------------------------------
+  34                              主函数
+  35          ------------------------------------------------*/
+  36          
+  37          void main (void)
+  38          {
+  39   1        int i=100,j;
+  40   1        InitUART();
+  41   1        
+  42   1        //先输出0，再输出1，才能真正输出
+  43   1        P0=0x00;
+  44   1        P1=0x00;
+  45   1        P2=0x00;
+  46   1        P3=0x00;
+  47   1      
+  48   1        P0=0xff;
+  49   1        P1=0xff;
+  50   1        P2=0xff;
+  51   1        P3=0xff;
+  52   1        
+  53   1        KEY1=1; //按键输入端口电平置高
+  54   1        KEY2=1;
+C51 COMPILER V9.55   SMARTHOME                                                             04/24/2016 02:00:54 PAGE 2   
 
-  55   1         SBUF = dat;
-  56   1         while(!TI);
-  57   1         TI = 0;
-  58   1      }
-  59          /*------------------------------------------------
-  60                              发送一个字符串
-  61          ------------------------------------------------*/
-  62          void SendStr(unsigned char *s)
-  63          {
-  64   1       while(*s!='\n')// \0 表示字符串结束标志，通过检测是否字符串末尾
-  65   1        {
-  66   2          SendByte(*s);
-  67   2          s++;
-  68   2        }
-  69   1      }
-  70          
-  71          
-  72          void receive_wait()
-  73          {
-  74   1          while(!RI);
-  75   1          RI = 0;
-  76   1      }
-  77          
-  78          void sendIOData(){
-  79   1         send[0]=P0;
-  80   1         send[1]=P1;
-  81   1         send[2]=P2;
-  82   1         send[3]=P3;
-  83   1         send[4]='\n';
-  84   1         SendStr(send);
-  85   1      }
-  86          
-  87          /*------------------------------------------------
-  88                              串口数据 控制组件
-  89          ------------------------------------------------*/
-  90          void UART_SER() interrupt 4 
-  91          {
-  92   1         if(RI)                        //判断是接收中断产生
-  93   1           {
-  94   2            RI=0;                      //标志位清零
-  95   2            switch(SBUF){
-  96   3              case 0xaa://读取所有IO口的电平状态
-  97   3              receive_wait();
-  98   3              sendIOData();
-  99   3              break;
- 100   3              case 0xa0://设置P0的8位电平
- 101   3              receive_wait();
- 102   3              P0=SBUF;
- 103   3              sendIOData();
- 104   3              break;
- 105   3              case 0xa1://设置P1的8位电平
- 106   3              receive_wait();
- 107   3              P1=SBUF;
- 108   3              sendIOData();
- 109   3              break;
- 110   3              case 0xa2://设置P2的8位电平
- 111   3              receive_wait();
- 112   3              P2=SBUF;
- 113   3              sendIOData();
- 114   3              break;
- 115   3              case 0xa3://设置P3的8位电平
- 116   3              receive_wait();
-C51 COMPILER V9.55   SMARTHOME                                                             04/17/2016 00:41:41 PAGE 3   
+  55   1        
+  56   1        while (1){
+  57   2      //    SendByte(0xff);
+  58   2      //    while(i-->0){
+  59   2      //      j=100;
+  60   2      //      while(j-->0);
+  61   2      //    }
+  62   2      
+  63   2          
+  64   2        if(!KEY1||!KEY2)  //如果检测到低电平，说明按键按下
+  65   2          {
+  66   3           DelayMs(10); //延时去抖，一般10-20ms
+  67   3           if(!KEY1||!KEY2)     //再次确认按键是否按下，没有按下则退出
+  68   3           {
+  69   4              flag1=!KEY1;
+  70   4              flag2=!KEY2;
+  71   4              while(!KEY1||!KEY2);//如果确认按下按键等待按键释放，没有释放则一直等待
+  72   4               {
+  73   5                 if(flag1)
+  74   5                  LED1=!LED1;
+  75   5                 if(flag2)
+  76   5                  LED2=!LED2;
+  77   5                 sendIOData();
+*** WARNING C206 IN LINE 77 OF smarthome.c: 'sendIOData': missing function-prototype
+  78   5            }
+  79   4           }
+  80   3        }
+  81   2      
+  82   2           //主循环中添加其他需要一直工作的程序
+  83   2        
+  84   2        
+  85   2        }
+  86   1      }
+*** WARNING C280 IN LINE 39 OF smarthome.c: 'j': unreferenced local variable
+  87          
+  88          /*------------------------------------------------
+  89                              发送一个字节
+  90          ------------------------------------------------*/
+  91          void SendByte(unsigned char dat)
+  92          {
+  93   1         SBUF = dat;
+  94   1         while(!TI);
+  95   1         TI = 0;
+  96   1      }
+  97          /*------------------------------------------------
+  98                              发送一个字符串
+  99          ------------------------------------------------*/
+ 100          void SendStr(unsigned char *s)
+ 101          {
+ 102   1       while(*s!='\n')// \0 表示字符串结束标志，通过检测是否字符串末尾
+ 103   1        {
+ 104   2          SendByte(*s);
+ 105   2          s++;
+ 106   2        }
+ 107   1      }
+ 108          
+ 109          
+ 110          void receive_wait()
+ 111          {
+ 112   1          while(!RI);
+ 113   1          RI = 0;
+ 114   1      }
+C51 COMPILER V9.55   SMARTHOME                                                             04/24/2016 02:00:54 PAGE 3   
 
- 117   3              P3=P3&0x03|SBUF;
- 118   3              sendIOData();
- 119   3              break;
- 120   3            }
- 121   2         }
- 122   1          if(TI)                        //如果是发送标志位，清零
- 123   1        {
- 124   2            TI=0;
- 125   2        }
- 126   1      } 
- 127          
- 128          
- 129          
+ 115          
+ 116          void sendIOData(){
+*** ERROR C231 IN LINE 116 OF smarthome.c: 'sendIOData': redefinition
+ 117   1         send[0]=P0;
+ 118   1         send[1]=P1;
+ 119   1         send[2]=P2;
+ 120   1         send[3]=P3;
+ 121   1         send[4]='\n';
+ 122   1         SendStr(send);
+ 123   1      }
+*** ERROR C231 IN LINE 123 OF smarthome.c: 'sendIOData': redefinition
+ 124          
+ 125          /*------------------------------------------------
+ 126                              串口数据 控制组件
+ 127          ------------------------------------------------*/
+ 128          void UART_SER() interrupt 4 
+ 129          {
+ 130   1         if(RI)                        //判断是接收中断产生
+ 131   1           {
+ 132   2            RI=0;                      //标志位清零
+ 133   2            switch(SBUF){
+ 134   3              case 0xaa://读取所有IO口的电平状态
+ 135   3              receive_wait();
+ 136   3              sendIOData();
+ 137   3              break;
+ 138   3              case 0xa0://设置P0的8位电平
+ 139   3              receive_wait();
+ 140   3              P0=SBUF;
+ 141   3              sendIOData();
+ 142   3              break;
+ 143   3              case 0xa1://设置P1的8位电平
+ 144   3              receive_wait();
+ 145   3              P1=SBUF;
+ 146   3              sendIOData();
+ 147   3              break;
+ 148   3              case 0xa2://设置P2的8位电平
+ 149   3              receive_wait();
+ 150   3              P2=SBUF;
+ 151   3              sendIOData();
+ 152   3              break;
+ 153   3              case 0xa3://设置P3的8位电平
+ 154   3              receive_wait();
+ 155   3              P3=P3&0x03|SBUF;
+ 156   3              sendIOData();
+ 157   3              break;
+ 158   3            }
+ 159   2         }
+ 160   1          if(TI)                        //如果是发送标志位，清零
+ 161   1        {
+ 162   2            TI=0;
+ 163   2        }
+ 164   1      }
+ 165          
+ 166          /*------------------------------------------------
+ 167           uS延时函数，含有输入参数 unsigned char t，无返回值
+ 168           unsigned char 是定义无符号字符变量，其值的范围是
+ 169           0~255 这里使用晶振12M，精确延时请使用汇编,大致延时
+ 170           长度如下 T=tx2+5 uS 
+ 171          ------------------------------------------------*/
+ 172          void DelayUs2x(unsigned char t)
+ 173          {   
+ 174   1       while(--t);
+C51 COMPILER V9.55   SMARTHOME                                                             04/24/2016 02:00:54 PAGE 4   
 
+ 175   1      }
+ 176          /*------------------------------------------------
+ 177           mS延时函数，含有输入参数 unsigned char t，无返回值
+ 178           unsigned char 是定义无符号字符变量，其值的范围是
+ 179           0~255 这里使用晶振12M，精确延时请使用汇编
+ 180          ------------------------------------------------*/
+ 181          void DelayMs(unsigned char t)
+ 182          {
+ 183   1           
+ 184   1       while(t--)
+ 185   1       {
+ 186   2           //大致延时1mS
+ 187   2           DelayUs2x(245);
+ 188   2         DelayUs2x(245);
+ 189   2       }
+ 190   1      }
+ 191          
+ 192          
+ 193          
 
-MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    267    ----
-   CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =   ----    ----
-   PDATA SIZE       =   ----    ----
-   DATA SIZE        =      7       4
-   IDATA SIZE       =   ----    ----
-   BIT SIZE         =   ----    ----
-END OF MODULE INFORMATION.
-
-
-C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  2 WARNING(S),  2 ERROR(S)

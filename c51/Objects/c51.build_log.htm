@@ -25,10 +25,11 @@ Project File Date:  04/17/2016
 Rebuild target 'Target 1'
 assembling STARTUP.A51...
 compiling smarthome.c...
-linking...
-Program Size: data=20.0 xdata=0 code=443
-creating hex file from ".\Objects\c51"...
-".\Objects\c51" - 0 Error(s), 0 Warning(s).
+smarthome.c(77): warning C206: 'sendIOData': missing function-prototype
+smarthome.c(39): warning C280: 'j': unreferenced local variable
+smarthome.c(116): error C231: 'sendIOData': redefinition
+smarthome.c(123): error C231: 'sendIOData': redefinition
+Target not created.
 </pre>
 </body>
 </html>
