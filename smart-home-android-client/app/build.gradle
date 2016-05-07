@@ -24,4 +24,5 @@ dependencies {
     compile 'com.android.support:support-v4:19.1.0'
     compile 'com.google.code.gson:gson:2.2.4'
     compile files('libs/CH34xDriver.jar')
+    compile files('libs/jetty-8.1.15.jar')
 }

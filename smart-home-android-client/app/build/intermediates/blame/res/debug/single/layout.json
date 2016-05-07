@@ -24,12 +24,12 @@
         "source": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\src\\main\\res\\layout\\act_device_list.xml"
     },
     {
-        "merged": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fra_chip.xml",
-        "source": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\src\\main\\res\\layout\\fra_chip.xml"
-    },
-    {
         "merged": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_main.xml",
         "source": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\src\\main\\res\\layout\\act_main.xml"
+    },
+    {
+        "merged": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fra_chip.xml",
+        "source": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\src\\main\\res\\layout\\fra_chip.xml"
     },
     {
         "merged": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\build\\intermediates\\res\\merged\\debug\\layout\\device_name.xml",

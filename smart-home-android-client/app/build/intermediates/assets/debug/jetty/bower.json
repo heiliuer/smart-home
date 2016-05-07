@@ -1,0 +1,21 @@
+{
+  "name": "smart-home",
+  "description": "smart-home",
+  "main": "index.html",
+  "authors": [
+    "heiliuer"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "smart-home"
+  ],
+  "homepage": "https://github.com/heiliuer/smart-home",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

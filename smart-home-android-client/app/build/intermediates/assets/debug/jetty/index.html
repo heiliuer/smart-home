@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>米家智能家居控制系统</title>
+    <link rel="stylesheet" href="css/weui.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <style></style>
+</head>
+<body>
+<div id="vue-app">
+
+    <div class="weui_cells">
+        <div class="weui_cell weui_check_label">
+            <img src="img/desk.png" class="img_light" :class="{gray:!isConnected||!status.deskLightOn}" alt="">
+            <input type="checkbox" :disabled="!isConnected" @change="switchLight()" v-model="status.deskLightOn"
+                   class="weui_switch float_right_switch">
+        </div>
+    </div>
+
+
+    <div class="weui_cells">
+        <div class="weui_cell weui_check_label">
+            <img src="img/floor.gif" class="img_light"  :class="{gray:!isConnected||!status.floorLightOn}" alt="">
+            <input type="checkbox" :disabled="!isConnected" @change="switchLight()" v-model="status.floorLightOn"
+                   class="weui_switch float_right_switch">
+        </div>
+    </div>
+
+
+</div>
+<!--<button onclick="lightDesk()">台灯</button>
+<button onclick="lightFloor()">吊灯</button>-->
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

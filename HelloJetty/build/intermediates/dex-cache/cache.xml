@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="F:\Projects\smart-home\HelloJetty\app\libs\jetty-8.1.15.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="031206f56391700d43543cb5e7ad5e52d375097e">
+        <dex dex="F:\Projects\smart-home\HelloJetty\app\build\intermediates\pre-dexed\debug\jetty-8.1.15_f782075230832ed1780606097be29aec12a38184.jar" />
+    </item>
+
+</items>
