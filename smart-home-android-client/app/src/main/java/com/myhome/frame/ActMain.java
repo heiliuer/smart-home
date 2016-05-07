@@ -1,6 +1,5 @@
 package com.myhome.frame;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
@@ -8,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.heiliuer.myhome.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -39,11 +39,5 @@ public class ActMain extends FragmentActivity {
 		}
 	}
 
-	@Override
-	public void onBackPressed() {
-		startActivity(new Intent(Intent.ACTION_MAIN).setFlags(
-				Intent.FLAG_ACTIVITY_NEW_TASK)
-				.addCategory(Intent.CATEGORY_HOME));
-	}
 
 }

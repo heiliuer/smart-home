@@ -1,5 +1,9 @@
 [
     {
+        "merged": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\build\\intermediates\\res\\merged\\debug\\layout\\dia_qrcode.xml",
+        "source": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\src\\main\\res\\layout\\dia_qrcode.xml"
+    },
+    {
         "merged": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\build\\intermediates\\res\\merged\\debug\\layout\\tab.xml",
         "source": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\src\\main\\res\\layout\\tab.xml"
     },

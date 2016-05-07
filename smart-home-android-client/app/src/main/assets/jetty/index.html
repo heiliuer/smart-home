@@ -6,15 +6,16 @@
     <title>米家智能家居控制系统</title>
     <link rel="stylesheet" href="css/weui.min.css">
     <link rel="stylesheet" href="css/app.css">
-    <style></style>
 </head>
 <body>
-<div id="vue-app">
+<div id="vue-app" class="invisiable">
+
 
     <div class="weui_cells">
         <div class="weui_cell weui_check_label">
             <img src="img/desk.png" class="img_light" :class="{gray:!isConnected||!status.deskLightOn}" alt="">
-            <input type="checkbox" :disabled="!isConnected" @change="switchLight()" v-model="status.deskLightOn"
+            <input type="checkbox" :disabled="!isConnected||waitEcho" @change="switchLight()"
+                   v-model="status.deskLightOn"
                    class="weui_switch float_right_switch">
         </div>
     </div>
@@ -22,9 +23,28 @@
 
     <div class="weui_cells">
         <div class="weui_cell weui_check_label">
-            <img src="img/floor.gif" class="img_light"  :class="{gray:!isConnected||!status.floorLightOn}" alt="">
-            <input type="checkbox" :disabled="!isConnected" @change="switchLight()" v-model="status.floorLightOn"
+            <img src="img/floor.gif" class="img_light" :class="{gray:!isConnected||!status.floorLightOn}" alt="">
+            <input type="checkbox" :disabled="!isConnected||waitEcho" @change="switchLight()"
+                   v-model="status.floorLightOn"
                    class="weui_switch float_right_switch">
+        </div>
+    </div>
+
+
+    <div class="weui_btn_area">
+        <a id="qrcode_switcher" href="javascript:;" class="weui_btn weui_btn_primary">分享</a>
+    </div>
+
+    <div class="weui_dialog_alert invisiable" id="qrcode">
+        <div class="weui_mask"></div>
+        <div class="weui_dialog">
+            <div class="weui_dialog_hd"><strong class="weui_dialog_title">扫一扫分享网页</strong></div>
+            <div class="weui_dialog_bd">
+                <img width="90%" :src="qrcodeUrl" alt="">
+            </div>
+            <div class="weui_dialog_ft">
+                <a href="javascript:;" class="weui_btn_dialog primary">确定</a>
+            </div>
         </div>
     </div>
 

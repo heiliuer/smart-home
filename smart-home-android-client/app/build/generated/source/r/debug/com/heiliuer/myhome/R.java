@@ -127,50 +127,52 @@ containing a value of this type.
     public static final class id {
         public static final int FILL=0x7f0b0000;
         public static final int STROKE=0x7f0b0001;
-        public static final int btn_add_task=0x7f0b0012;
+        public static final int btn_add_task=0x7f0b0013;
         public static final int button_scan=0x7f0b0006;
         public static final int clear=0x7f0b000a;
-        public static final int edit_cmd_type=0x7f0b0011;
-        public static final int edit_hours=0x7f0b000e;
-        public static final int edit_minutes=0x7f0b000f;
-        public static final int edit_seconds=0x7f0b0010;
-        public static final int img=0x7f0b0020;
-        public static final int layout_edit=0x7f0b000d;
-        public static final int menu_add_device=0x7f0b0022;
+        public static final int edit_cmd_type=0x7f0b0012;
+        public static final int edit_hours=0x7f0b000f;
+        public static final int edit_minutes=0x7f0b0010;
+        public static final int edit_seconds=0x7f0b0011;
+        public static final int img=0x7f0b0021;
+        public static final int img_qrcode=0x7f0b000b;
+        public static final int layout_edit=0x7f0b000e;
+        public static final int menu_add_device=0x7f0b0023;
         public static final int new_devices=0x7f0b0005;
         public static final int paired_devices=0x7f0b0003;
         public static final int realtabcontent=0x7f0b0007;
         public static final int root_layout=0x7f0b0008;
-        public static final int send_p0_00=0x7f0b0014;
-        public static final int send_p0_ff=0x7f0b0013;
-        public static final int send_p1_00=0x7f0b0016;
-        public static final int send_p1_ff=0x7f0b0015;
-        public static final int send_p2_00=0x7f0b0018;
-        public static final int send_p2_ff=0x7f0b0017;
-        public static final int send_p3_00=0x7f0b001a;
-        public static final int send_p3_ff=0x7f0b0019;
+        public static final int send_p0_00=0x7f0b0015;
+        public static final int send_p0_ff=0x7f0b0014;
+        public static final int send_p1_00=0x7f0b0017;
+        public static final int send_p1_ff=0x7f0b0016;
+        public static final int send_p2_00=0x7f0b0019;
+        public static final int send_p2_ff=0x7f0b0018;
+        public static final int send_p3_00=0x7f0b001b;
+        public static final int send_p3_ff=0x7f0b001a;
         public static final int status=0x7f0b0009;
-        public static final int switch_p10=0x7f0b001b;
-        public static final int switch_p11=0x7f0b001c;
-        public static final int switch_p12=0x7f0b001d;
-        public static final int switch_p13=0x7f0b001e;
+        public static final int switch_p10=0x7f0b001c;
+        public static final int switch_p11=0x7f0b001d;
+        public static final int switch_p12=0x7f0b001e;
+        public static final int switch_p13=0x7f0b001f;
         public static final int title_new_devices=0x7f0b0004;
         public static final int title_paired_devices=0x7f0b0002;
-        public static final int txt=0x7f0b0021;
-        public static final int txt_receive=0x7f0b000c;
-        public static final int txt_tasks=0x7f0b001f;
-        public static final int txt_time=0x7f0b000b;
+        public static final int txt=0x7f0b0022;
+        public static final int txt_receive=0x7f0b000d;
+        public static final int txt_tasks=0x7f0b0020;
+        public static final int txt_time=0x7f0b000c;
     }
     public static final class layout {
         public static final int act_device_list=0x7f030000;
         public static final int act_main=0x7f030001;
         public static final int act_welcome=0x7f030002;
         public static final int device_name=0x7f030003;
-        public static final int fra_chip=0x7f030004;
-        public static final int fra_devices=0x7f030005;
-        public static final int tab=0x7f030006;
-        public static final int view_gap_x=0x7f030007;
-        public static final int view_gap_y=0x7f030008;
+        public static final int dia_qrcode=0x7f030004;
+        public static final int fra_chip=0x7f030005;
+        public static final int fra_devices=0x7f030006;
+        public static final int tab=0x7f030007;
+        public static final int view_gap_x=0x7f030008;
+        public static final int view_gap_y=0x7f030009;
     }
     public static final class menu {
         public static final int fra_chip=0x7f0a0000;
@@ -191,15 +193,16 @@ containing a value of this type.
         public static final int none_paired=0x7f09000b;
         public static final int open_bt_failed=0x7f09000c;
         public static final int open_bt_success=0x7f09000d;
-        public static final int retry_connect=0x7f09000e;
-        public static final int scanning=0x7f09000f;
-        public static final int select_device=0x7f090010;
-        public static final int set_time=0x7f090011;
-        public static final int setting=0x7f090012;
-        public static final int starting_services=0x7f090013;
-        public static final int title_other_devices=0x7f090014;
-        public static final int title_paired_devices=0x7f090015;
-        public static final int toReturn=0x7f090016;
+        public static final int qrcode_comment=0x7f09000e;
+        public static final int retry_connect=0x7f09000f;
+        public static final int scanning=0x7f090010;
+        public static final int select_device=0x7f090011;
+        public static final int set_time=0x7f090012;
+        public static final int setting=0x7f090013;
+        public static final int starting_services=0x7f090014;
+        public static final int title_other_devices=0x7f090015;
+        public static final int title_paired_devices=0x7f090016;
+        public static final int toReturn=0x7f090017;
     }
     public static final class style {
         /**  API 11 theme customizations can go here. 

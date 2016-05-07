@@ -98,6 +98,7 @@
     <orderEntry type="library" exported="" name="jetty-8.1.15" level="project" />
     <orderEntry type="library" exported="" name="CH34xDriver" level="project" />
     <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />
+    <orderEntry type="library" exported="" name="zxing-core-1.7" level="project" />
     <orderEntry type="module" module-name="_UtilsLibrary" exported="" />
     <orderEntry type="module" module-name="_MyLibrary" exported="" />
   </component>

@@ -35,6 +35,7 @@
     <string name="none_paired">没有已配对的设备</string>
     <string name="open_bt_failed">开启蓝牙失败</string>
     <string name="open_bt_success">开启蓝牙成功</string>
+    <string name="qrcode_comment">扫一扫，开始控制</string>
     <string name="retry_connect">正在重连</string>
     <string name="scanning">扫描设备</string>
     <string name="select_device">选择连接</string>

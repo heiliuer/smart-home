@@ -1,7 +1,9 @@
 /**
  * Created by Heiliuer on 2016/5/7 0007.
  */
-
+Vue.filter("encodeURI", function (value) {
+    return encodeURI(value)
+});
 var vm = new Vue({
     el: "#vue-app",
     data: {
@@ -9,10 +11,13 @@ var vm = new Vue({
             deskLightOn: true,
             floorLightOn: true
         },
-        isConnected: false
+        isConnected: false,
+        waitEcho: false,
+        currentUrl: location.href
     },
     methods: {
         switchLight: function () {
+            this.waitEcho = true;
             // console.log(this.status.deskLightOn);
             if (this.isConnected) {
                 socket.send(JSON.stringify(this.status));
@@ -45,6 +50,7 @@ function openSocket() {
             var data = JSON.parse(event.data);
             if ("deskLightOn" in data) {
                 vm.status = data;
+                vm.waitEcho = false;
             } else {
                 console.log(event.data, " is invalid format!");
             }
@@ -79,4 +85,14 @@ var setTimeReOpenSocket = function () {
 }();
 
 openSocket();
+
+$("#vue-app").fadeIn(300);
+
+$("#qrcode .weui_btn_dialog").click(function () {
+    $("#qrcode").hide()
+});
+
+$("#qrcode_switcher").click(function () {
+    $("#qrcode").show();
+})
 

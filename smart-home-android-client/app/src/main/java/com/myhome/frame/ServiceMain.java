@@ -17,6 +17,7 @@ import com.myhome.chip.IOReadAndWrite;
 import com.myhome.prefrences.PreferencesCommoms;
 import com.myhome.service.ComService;
 import com.myhome.service.bluetooth.BluetoothService;
+import com.myhome.utils.Constants;
 import com.myhome.websocket.WebSocketRoom;
 
 import java.util.Vector;
@@ -79,7 +80,7 @@ public final class ServiceMain extends Service {
 
         websocketRoom = new WebSocketRoom(comService);
         addOnDataIOListeners(websocketRoom);
-        JServer mServer = new JServer(8081);
+        JServer mServer = new JServer(Constants.PORT_HTTP_SERVER);
         mServer.start(getApplicationContext());
 
     }

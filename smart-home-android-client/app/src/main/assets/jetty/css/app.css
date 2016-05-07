@@ -19,3 +19,6 @@
     filter: grayscale(100%);
     filter: gray;
 }
+.invisiable{
+    display: none;
+}
