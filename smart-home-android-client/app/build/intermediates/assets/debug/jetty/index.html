@@ -9,7 +9,9 @@
 </head>
 <body>
 <div id="vue-app" class="invisiable">
-
+    <div v-show="!isConnected" class="top_error">
+        <p>连接中断，正在尝试重连</p>
+    </div>
 
     <div class="weui_cells">
         <div class="weui_cell weui_check_label">
@@ -40,7 +42,7 @@
         <div class="weui_dialog">
             <div class="weui_dialog_hd"><strong class="weui_dialog_title">扫一扫分享网页</strong></div>
             <div class="weui_dialog_bd">
-                <img width="90%" src="http://qr.liantu.com/api.php?text={{currentUrl|encodeURI}}" alt="">
+                <img width="90%" :src="qrcodeUrl" alt="">
             </div>
             <div class="weui_dialog_ft">
                 <a href="javascript:;" class="weui_btn_dialog primary">确定</a>

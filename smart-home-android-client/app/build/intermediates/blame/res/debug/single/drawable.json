@@ -8,6 +8,10 @@
         "source": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\src\\main\\res\\drawable\\btn_back.xml"
     },
     {
+        "merged": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\tab_webview_selector.xml",
+        "source": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\src\\main\\res\\drawable\\tab_webview_selector.xml"
+    },
+    {
         "merged": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\tab_txt_color_selector.xml",
         "source": "F:\\Projects\\smart-home\\smart-home-android-client\\app\\src\\main\\res\\drawable\\tab_txt_color_selector.xml"
     },

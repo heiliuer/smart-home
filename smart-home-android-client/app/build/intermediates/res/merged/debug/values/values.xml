@@ -30,6 +30,7 @@
     <string name="devices">设备</string>
     <string name="exit">退出程序</string>
     <string name="exitAlert">2秒内再次点击退出程序</string>
+    <string name="lan_ctrl">控制</string>
     <string name="media_center">媒体中心</string>
     <string name="none_found">没有扫描到设备</string>
     <string name="none_paired">没有已配对的设备</string>
@@ -41,6 +42,7 @@
     <string name="select_device">选择连接</string>
     <string name="set_time">设定时间</string>
     <string name="setting">设置</string>
+    <string name="share">分享</string>
     <string name="starting_services">正在启动服务</string>
     <string name="title_other_devices">其他可用设备</string>
     <string name="title_paired_devices">已配对设备</string>

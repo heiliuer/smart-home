@@ -29,5 +29,7 @@
     <string name="title_other_devices">其他可用设备</string>
     <string name="button_scan">开始扫描</string>
     <string name="qrcode_comment">扫一扫，开始控制</string>
+    <string name="lan_ctrl">控制</string>
+    <string name="share">分享</string>
 
 </resources>

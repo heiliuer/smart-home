@@ -1,9 +1,6 @@
 /**
  * Created by Heiliuer on 2016/5/7 0007.
  */
-Vue.filter("encodeURI", function (value) {
-    return encodeURI(value)
-});
 var vm = new Vue({
     el: "#vue-app",
     data: {
@@ -13,7 +10,8 @@ var vm = new Vue({
         },
         isConnected: false,
         waitEcho: false,
-        currentUrl: location.href
+        qrcodeUrl: encodeURI("http://qr.liantu.com/api.php?text="+location.href),
+
     },
     methods: {
         switchLight: function () {
