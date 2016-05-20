@@ -10,4 +10,11 @@
         android:layout_height="200sp"
         android:layout_gravity="center_horizontal|center_vertical" />
 
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:padding="3dp"
+        android:autoLink="web"
+        android:id="@+id/txt_open_url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>

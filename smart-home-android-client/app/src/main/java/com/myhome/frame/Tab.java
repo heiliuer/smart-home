@@ -20,11 +20,10 @@ public class Tab {
     }
 
     public static final Tab[] TABS = new Tab[]{
-            new Tab(R.string.chip, R.drawable.tab_seach_selector,
-                    FraChip.class, "FraDbIndex"),
             new Tab(R.string.lan_ctrl, R.drawable.tab_webview_selector,
-                    FraWebview.class, "FraWebview"),
+                    FraWebview.class, "FraWebview"), new Tab(R.string.chip, R.drawable.tab_seach_selector,
+            FraChip.class, "FraDbIndex")/*,
             new Tab(R.string.devices, R.drawable.tab_test_selector,
-                    FraDevices.class, "FraProductTest")};
+                    FraDevices.class, "FraProductTest")*/};
 
 }

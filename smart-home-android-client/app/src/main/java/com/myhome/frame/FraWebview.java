@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.zxing.WriterException;
 import com.heiliuer.myhome.R;
@@ -75,6 +76,7 @@ public class FraWebview extends InjectFragment {
         dialogBuilder.setTitle(R.string.qrcode_comment);
         View view = getActivity().getLayoutInflater().inflate(R.layout.dia_qrcode, null);
         dialogBuilder.setView(view);
+        ((TextView) view.findViewById(R.id.txt_open_url)).setText(getUrl());
         try {
             ((ImageView) view.findViewById(R.id.img_qrcode)).setImageBitmap(QrcodeUtils.getQrcode(url));
         } catch (WriterException e) {

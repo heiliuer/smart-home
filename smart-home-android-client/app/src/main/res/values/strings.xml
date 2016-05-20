@@ -10,8 +10,8 @@
     <string name="starting_services">正在启动服务</string>
     <string name="set_time">设定时间</string>
     <string name="cmd_type">命令</string>
-    <string name="devices">设备</string>
-    <string name="chip">芯片</string>
+    <string name="devices">芯片</string>
+    <string name="chip">测试</string>
     <string name="add">添加</string>
 
     <!-- ActWelcome -->
@@ -31,5 +31,6 @@
     <string name="qrcode_comment">扫一扫，开始控制</string>
     <string name="lan_ctrl">控制</string>
     <string name="share">分享</string>
+    <string name="open_url">打开链接</string>
 
 </resources>
