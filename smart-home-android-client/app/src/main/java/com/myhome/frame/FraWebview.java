@@ -1,9 +1,6 @@
 package com.myhome.frame;
 
 import android.app.AlertDialog;
-import android.content.Context;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,6 +20,7 @@ import com.lidroid.xutils.view.InjectFragment;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.myhome.utils.Constants;
+import com.myhome.utils.DroidUtils;
 import com.myhome.utils.QrcodeUtils;
 
 @ContentView(R.layout.fra_webview)
@@ -87,26 +85,8 @@ public class FraWebview extends InjectFragment {
 
 
     private String getUrl() {
-        return "http://" + getIp() + ":" + Constants.PORT_HTTP_SERVER + "/index.html";
+        return "http://" + DroidUtils.getIp(getActivity()) + ":" + Constants.PORT_HTTP_SERVER + "/index.html";
     }
 
 
-    private String getIp() {
-        //获取wifi服务
-        WifiManager wifiManager = (WifiManager) getActivity().getSystemService(Context.WIFI_SERVICE);
-        //判断wifi是否开启
-        if (!wifiManager.isWifiEnabled()) {
-            wifiManager.setWifiEnabled(true);
-        }
-        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-        int ipAddress = wifiInfo.getIpAddress();
-        return intToIp(ipAddress);
-    }
-
-    private String intToIp(int i) {
-        return (i & 0xFF) + "." +
-                ((i >> 8) & 0xFF) + "." +
-                ((i >> 16) & 0xFF) + "." +
-                (i >> 24 & 0xFF);
-    }
 }

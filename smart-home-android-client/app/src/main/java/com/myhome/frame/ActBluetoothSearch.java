@@ -1,8 +1,5 @@
 package com.myhome.frame;
 
-import java.util.Set;
-import java.util.UUID;
-
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -24,6 +21,9 @@ import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lidroid.xutils.view.annotation.event.OnItemClick;
+
+import java.util.Set;
+import java.util.UUID;
 
 @ContentView(R.layout.act_device_list)
 public class ActBluetoothSearch extends Activity {

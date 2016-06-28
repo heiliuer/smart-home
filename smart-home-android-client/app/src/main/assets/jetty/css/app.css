@@ -1,6 +1,7 @@
 
 .img_light {
     width: 100px;
+    transition: 1s;
 }
 
 .float_right_switch {
@@ -18,6 +19,7 @@
     -o-filter: grayscale(100%);
     filter: grayscale(100%);
     filter: gray;
+    transition: 1s;
 }
 .invisiable{
     display: none;

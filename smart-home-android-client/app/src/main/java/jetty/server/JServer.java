@@ -57,6 +57,8 @@ public class JServer {
             // setup Resource Handler
             // assets配下を展開
             extractAssets(applicationContext.getResources().getAssets(), ASSETS_DIR);
+            createJsValsFile(applicationContext, ASSETS_DIR, "js"+File.separator+"CONFIG.js");
+
             String resourceBase = Environment.getExternalStorageDirectory().getAbsolutePath()
                     + "/" + ASSETS_DIR;
             // 静的リソースルート"（外部ストレージ）/jetty"に設定
@@ -74,6 +76,15 @@ public class JServer {
         try {
             mServer.start();
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void createJsValsFile(Context context, String assetsDir, String jsFileName) {
+        try {
+            File jsFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + assetsDir + File.separator + jsFileName);
+            new JsValsProducer(context).write(jsFile);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

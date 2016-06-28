@@ -26,7 +26,7 @@ var vm = new Vue({
 
 var socket;
 function openSocket() {
-    var host = "192.168.1.147:8081";
+    var host = location.host;
 // var host = location.host;
 // 创建一个Socket实例
     socket = new WebSocket('ws://' + host + "/" + "wsctrl");
@@ -93,4 +93,6 @@ $("#qrcode .weui_btn_dialog").click(function () {
 $("#qrcode_switcher").click(function () {
     $("#qrcode").show();
 })
+
+$("#qrcode .info").text(window.location.href);
 
