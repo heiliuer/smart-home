@@ -29,6 +29,9 @@ void InitUART(void) {
 	ES = 1;                  //打开串口中断
 }
 void SendByte(unsigned char dat);
+
+void checkbtn();
+void checkToggle();
 /*------------------------------------------------
  主函数
  ------------------------------------------------*/
@@ -51,12 +54,36 @@ void main(void) {
 	KEY1 = 1; //按键输入端口电平置高
 	KEY2 = 1;
 
-	while (1) {
 //		SendByte(0xff);
 //		while(i-->0){
 //			j=100;
 //			while(j-->0);
 //		}
+	checkToggle();
+	//主循环中添加其他需要一直工作的程序
+}
+
+//检测触发器模块
+void checkToggle() {
+	flag1 = KEY1;
+	flag2 = KEY2;
+	while (1) {
+		if (flag1 ^ KEY1) {
+			flag1 = KEY1;
+			LED1 = !LED1;
+			sendIOData();
+		}
+		if (flag2 ^ KEY2) {
+			flag2 = KEY2;
+			LED2 = !LED2;
+			sendIOData();
+		}
+	}
+}
+
+//检测两个按键
+void checkbtn() {
+	while (1) {
 
 		if (!KEY1 || !KEY2)  //如果检测到低电平，说明按键按下
 				{
@@ -75,12 +102,9 @@ void main(void) {
 					LED2 = !LED2;
 				}
 				sendIOData();
-				
+
 			}
 		}
-		
-		//主循环中添加其他需要一直工作的程序
-
 	}
 }
 
@@ -133,22 +157,24 @@ interrupt 4
 			receive_wait();
 			sendIOData();
 			break;
-			case 0xa0:						//设置P0的8位电平
+			case 0xa0://设置P0的8位电平
 			receive_wait();
 			P0=SBUF;
 			sendIOData();
 			break;
-			case 0xa1:						//设置P1的8位电平
+			case 0xa1://设置P1的8位电平
 			receive_wait();
 			P1=SBUF;
+			flag1 = KEY1;
+			flag2 = KEY2;
 			sendIOData();
 			break;
-			case 0xa2:						//设置P2的8位电平
+			case 0xa2://设置P2的8位电平
 			receive_wait();
 			P2=SBUF;
 			sendIOData();
 			break;
-			case 0xa3:						//设置P3的8位电平
+			case 0xa3://设置P3的8位电平
 			receive_wait();
 			P3=P3&0x03|SBUF;
 			sendIOData();

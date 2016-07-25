@@ -1,6 +1,6 @@
 package com.myhome.recorder.json;
 
-public class RecorgData {
+public class RecognizeData {
     private Content content;
 
     private Result result;

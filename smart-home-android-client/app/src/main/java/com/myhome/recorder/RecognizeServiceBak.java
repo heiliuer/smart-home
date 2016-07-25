@@ -17,7 +17,7 @@ import com.baidu.speech.VoiceRecognitionService;
 import com.google.gson.Gson;
 import com.heiliuer.myhome.R;
 import com.myhome.frame.ServiceMain;
-import com.myhome.recorder.json.RecorgData;
+import com.myhome.recorder.json.RecognizeData;
 import com.myhome.service.ComService;
 
 import org.json.JSONArray;
@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class RecorgService extends Service implements RecognitionListener, RecorgServiceHandler, RecorgServiceHandler.OnRecorgListener {
+public class RecognizeServiceBak extends Service implements RecognitionListener, RecognizeServiceHandler, RecognizeServiceHandler.OnRecognizeListener {
     private static final String TAG = "Sdk2Api";
     private static final int REQUEST_UI = 1;
     public static final int STATUS_None = 0;
@@ -52,12 +52,18 @@ public class RecorgService extends Service implements RecognitionListener, Recor
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this, new ComponentName(this, VoiceRecognitionService.class));
         speechRecognizer.setRecognitionListener(this);
 
-        addOnRecorgListener(this);
-        startVoiceRecorg();
+        addOnRecognizeListener(this);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startVoiceRecorg();
+            }
+        },4000);
+
     }
 
     @Override
-    public void onRecorgSuccess(RecorgData recorgData) {
+    public void onRecognizeSuccess(RecognizeData recorgData) {
         List<String> item = recorgData.getContent().getItem();
         Log.i(TAG, "parseDat:" + new Gson().toJson(item));
         ComService cs = ServiceMain.getServiceMain().getComService();
@@ -79,27 +85,28 @@ public class RecorgService extends Service implements RecognitionListener, Recor
 
 
     public class RecorgBinder extends Binder {
-        public RecorgServiceHandler getHandler() {
-            return RecorgService.this;
+        public RecognizeServiceHandler getHandler() {
+            return RecognizeServiceBak.this;
         }
     }
 
 
     private void startVoiceRecorg() {
-        stopRecorg();
-        recordThread = new RecordThread(new RecordThread.OnRecorgVoice() {
-            @Override
-            public void onRecorgVoice() {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        userStart();
-                    }
-                });
-            }
-        }, this);
-        Log.v("myTag", "startRecorg");
-        recordThread.start();
+//        stopRecorg();
+//        recordThread = new RecordThread(new RecordThread.OnRecorgVoice() {
+//            @Override
+//            public void onRecorgVoice() {
+//                handler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        userStart();
+//                    }
+//                });
+//            }
+//        }, this);
+//        Log.v("myTag", "startRecorg");
+//        recordThread.start();
+        userStart();
     }
 
     private void userStart() {
@@ -152,45 +159,63 @@ public class RecorgService extends Service implements RecognitionListener, Recor
 
     public void bindParams(Intent intent) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        if (sp.getBoolean("tips_sound", true)) {
+//        boolean tips_sound = sp.getBoolean("tips_sound", true);
+        boolean tips_sound = true;
+        if (tips_sound) {
             intent.putExtra(Constant.EXTRA_SOUND_START, R.raw.bdspeech_recognition_start);
             intent.putExtra(Constant.EXTRA_SOUND_END, R.raw.bdspeech_speech_end);
             intent.putExtra(Constant.EXTRA_SOUND_SUCCESS, R.raw.bdspeech_recognition_success);
             intent.putExtra(Constant.EXTRA_SOUND_ERROR, R.raw.bdspeech_recognition_error);
             intent.putExtra(Constant.EXTRA_SOUND_CANCEL, R.raw.bdspeech_recognition_cancel);
         }
-        if (sp.contains(Constant.EXTRA_INFILE)) {
+
+//        boolean extra_infile = sp.contains(Constant.EXTRA_INFILE);
+        boolean extra_infile = false;
+        if (extra_infile) {
             String tmp = sp.getString(Constant.EXTRA_INFILE, "").replaceAll(",.*", "").trim();
             intent.putExtra(Constant.EXTRA_INFILE, tmp);
         }
-        if (sp.getBoolean(Constant.EXTRA_OUTFILE, false)) {
+
+//        boolean extra_outfile = sp.getBoolean(Constant.EXTRA_OUTFILE, false);
+        boolean extra_outfile = false;
+        if (extra_outfile) {
             intent.putExtra(Constant.EXTRA_OUTFILE, "sdcard/outfile.pcm");
         }
-        if (sp.contains(Constant.EXTRA_SAMPLE)) {
+
+//        boolean extra_sample = sp.contains(Constant.EXTRA_SAMPLE);
+        boolean extra_sample = false;
+        if (extra_sample) {
             String tmp = sp.getString(Constant.EXTRA_SAMPLE, "").replaceAll(",.*", "").trim();
             if (null != tmp && !"".equals(tmp)) {
                 intent.putExtra(Constant.EXTRA_SAMPLE, Integer.parseInt(tmp));
             }
         }
-        if (sp.contains(Constant.EXTRA_LANGUAGE)) {
+
+//        boolean extra_language = sp.contains(Constant.EXTRA_LANGUAGE);
+        boolean extra_language = false;
+        if (extra_language) {
             String tmp = sp.getString(Constant.EXTRA_LANGUAGE, "").replaceAll(",.*", "").trim();
             if (null != tmp && !"".equals(tmp)) {
                 intent.putExtra(Constant.EXTRA_LANGUAGE, tmp);
             }
         }
-        if (sp.contains(Constant.EXTRA_NLU)) {
+
+        boolean extra_nlu = sp.contains(Constant.EXTRA_NLU);
+        if (extra_nlu) {
             String tmp = sp.getString(Constant.EXTRA_NLU, "").replaceAll(",.*", "").trim();
             if (null != tmp && !"".equals(tmp)) {
                 intent.putExtra(Constant.EXTRA_NLU, tmp);
             }
         }
 
-        if (sp.contains(Constant.EXTRA_VAD)) {
+        boolean extra_vad = sp.contains(Constant.EXTRA_VAD);
+        if (extra_vad) {
             String tmp = sp.getString(Constant.EXTRA_VAD, "").replaceAll(",.*", "").trim();
             if (null != tmp && !"".equals(tmp)) {
                 intent.putExtra(Constant.EXTRA_VAD, tmp);
             }
         }
+
         String prop = null;
         if (sp.contains(Constant.EXTRA_PROP)) {
             String tmp = sp.getString(Constant.EXTRA_PROP, "").replaceAll(",.*", "").trim();
@@ -292,6 +317,7 @@ public class RecorgService extends Service implements RecognitionListener, Recor
         print("检测到用户的已经停止说话");
     }
 
+
     @Override
     public void onError(int error) {
         status = STATUS_None;
@@ -340,10 +366,10 @@ public class RecorgService extends Service implements RecognitionListener, Recor
         try {
             print("origin_result=\n" + new JSONObject(json_res).toString(4));
 
-            RecorgData recorgData = new Gson().fromJson(json_res, RecorgData.class);
-            for (OnRecorgListener listener :
+            RecognizeData recorgData = new Gson().fromJson(json_res, RecognizeData.class);
+            for (OnRecognizeListener listener :
                     listeners) {
-                listener.onRecorgSuccess(recorgData);
+                listener.onRecognizeSuccess(recorgData);
             }
 
         } catch (Exception e) {
@@ -359,18 +385,18 @@ public class RecorgService extends Service implements RecognitionListener, Recor
     }
 
 
-    public List<OnRecorgListener> listeners = new ArrayList<OnRecorgListener>();
+    public List<OnRecognizeListener> listeners = new ArrayList<OnRecognizeListener>();
 
 
     @Override
-    public void addOnRecorgListener(OnRecorgListener listener) {
+    public void addOnRecognizeListener(OnRecognizeListener listener) {
         if (!listeners.contains(listener)) {
             listeners.add(listener);
         }
     }
 
     @Override
-    public void rmoveOnRecorgListener(OnRecorgListener listener) {
+    public void removeOnRecognizeListener(OnRecognizeListener listener) {
         if (listeners.contains(listener)) {
             listeners.remove(listener);
         }
