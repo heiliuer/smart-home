@@ -2,6 +2,8 @@ package com.myhome.frame;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -48,6 +50,13 @@ public class FraWebview extends InjectFragment {
         } else {
             ((ViewGroup) rootView.getParent()).removeAllViews();
         }
+        webView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ServiceMain.getServiceMain().getComService().send(new byte[]{(byte) 0xaa, (byte) 0xff});
+            }
+        }, 100);
+
         return rootView;
     }
 
@@ -71,7 +80,6 @@ public class FraWebview extends InjectFragment {
 
     private void showQrcodeDialog() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
-        dialogBuilder.setTitle(R.string.qrcode_comment);
         View view = getActivity().getLayoutInflater().inflate(R.layout.dia_qrcode, null);
         dialogBuilder.setView(view);
         ((TextView) view.findViewById(R.id.txt_open_url)).setText(getUrl());
@@ -80,7 +88,13 @@ public class FraWebview extends InjectFragment {
         } catch (WriterException e) {
             e.printStackTrace();
         }
-        dialogBuilder.create().show();
+        TextView customTitleView = new TextView(getActivity());
+        customTitleView.setGravity(Gravity.CENTER);
+        customTitleView.setTextSize(TypedValue.COMPLEX_UNIT_DIP,17);
+        customTitleView.setText(R.string.qrcode_comment);
+        dialogBuilder.setCustomTitle(customTitleView);
+        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
     }
 
 

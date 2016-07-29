@@ -17,7 +17,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.myhome.recorder.RecorgService;
+import com.myhome.recorder.RecognizeService;
 import com.myhome.prefrences.PreferencesCommoms;
 import com.myhome.service.ComService;
 import com.myhome.service.bluetooth.BluetoothService;
@@ -68,7 +68,7 @@ public class ActWelcome extends Activity implements ServiceConnection {
 			startService();
 		}
 
-		startService(new Intent(this, RecorgService.class));
+		startService(new Intent(this, RecognizeService.class));
 	}
 
 	@OnClick(R.id.clear)

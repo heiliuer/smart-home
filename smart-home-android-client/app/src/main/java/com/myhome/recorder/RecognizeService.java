@@ -1,16 +1,14 @@
 package com.myhome.recorder;
 
 import android.app.Service;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.speech.SpeechRecognizer;
 import android.util.Log;
+import android.widget.Toast;
 
-import com.baidu.speech.VoiceRecognitionService;
-import com.baidu.voicerecognition.android.DataUploader;
 import com.baidu.voicerecognition.android.VoiceRecognitionClient;
 import com.baidu.voicerecognition.android.VoiceRecognitionConfig;
 import com.google.gson.Gson;
@@ -30,6 +28,7 @@ public class RecognizeService extends Service implements RecognizeServiceHandler
     public static final int STATUS_Ready = 3;
     public static final int STATUS_Speaking = 4;
     public static final int STATUS_Recognition = 5;
+    public static final int DELAY_MILLIS = 100;
     private SpeechRecognizer speechRecognizer;
     private int status = STATUS_None;
     private long speechEndTime = -1;
@@ -45,29 +44,31 @@ public class RecognizeService extends Service implements RecognizeServiceHandler
         handler = new Handler() {
         };
 
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startVoiceRecorg();
-            }
-        }, 4000);
         mASREngine = VoiceRecognitionClient.getInstance(this);
         mASREngine.setTokenApis(Constants.API_KEY, Constants.SECRET_KEY);
-        uploadContacts();
+        postStarRecorg();
     }
 
-    private void onRecognizeSuccess(RecognizeData recorgData) {
-        List<String> item = recorgData.getContent().getItem();
-        Log.i(TAG, "parseDat:" + new Gson().toJson(item));
+    private Runnable runnableStarRecorg = new Runnable() {
+        @Override
+        public void run() {
+            startVoiceRecorg();
+        }
+    };
+
+    private void postStarRecorg() {
+        handler.removeCallbacks(runnableStarRecorg);
+        handler.postDelayed(runnableStarRecorg, DELAY_MILLIS);
+    }
+
+
+    private void echoRecorgByAction(RecognizeData recorgData) {
+        RecorgnizeJudgeResult recorgnizeJudgeResult = new RecorgnizeJudgeResult(recorgData);
         ComService cs = ServiceMain.getServiceMain().getComService();
-        if (item.size() > 0) {
-            String key = item
-                    .get(0);
-            if (key.indexOf("开灯") != -1) {
-                cs.send(new byte[]{(byte) 0xa1, (byte) 0xff});
-            } else if (key.indexOf("关灯") != -1) {
-                cs.send(new byte[]{(byte) 0xa1, (byte) 0});
-            }
+        if (recorgnizeJudgeResult.isLightOn()) {
+            cs.send(new byte[]{(byte) 0xa1, (byte) 0xff});
+        } else if (recorgnizeJudgeResult.isLightOff()) {
+            cs.send(new byte[]{(byte) 0xa1, (byte) 0});
         }
     }
 
@@ -84,7 +85,40 @@ public class RecognizeService extends Service implements RecognizeServiceHandler
     }
 
 
-    private void startVoiceRecorg() {
+    public boolean startVoiceRecorg() {
+        VoiceRecognitionConfig config = new VoiceRecognitionConfig();
+        int prop = Config.CURRENT_PROP;
+        // 输入法暂不支持语义解析
+        if (prop == VoiceRecognitionConfig.PROP_INPUT) {
+            prop = VoiceRecognitionConfig.PROP_SEARCH;
+        }
+        config.setProp(prop);
+        config.setLanguage(Config.getCurrentLanguage());
+        config.enableNLU();
+        config.enableVoicePower(Config.SHOW_VOL); // 音量反馈。
+        if (Config.PLAY_START_SOUND) {
+            config.enableBeginSoundEffect(R.raw.bdspeech_recognition_start); // 设置识别开始提示音
+        }
+        if (Config.PLAY_END_SOUND) {
+            config.enableEndSoundEffect(R.raw.bdspeech_speech_end); // 设置识别结束提示音
+        }
+        config.setSampleRate(VoiceRecognitionConfig.SAMPLE_RATE_8K); // 设置采样率
+        // 下面发起识别
+        int code = mASREngine.startVoiceRecognition(mListener, config);
+        if (code != VoiceRecognitionClient.START_WORK_RESULT_WORKING) {
+            Toast.makeText(RecognizeService.this, "启动失败:" + code,
+                    Toast.LENGTH_LONG).show();
+        } else {
+//            Toast.makeText(RecognizeService.this, "开始识别语音",
+//                    Toast.LENGTH_LONG).show();
+        }
+
+        return code == VoiceRecognitionClient.START_WORK_RESULT_WORKING;
+    }
+
+    public boolean onCancel() {
+        mASREngine.stopVoiceRecognition();
+        return true;
     }
 
 
@@ -109,21 +143,25 @@ public class RecognizeService extends Service implements RecognizeServiceHandler
             switch (status) {
                 // 语音识别实际开始，这是真正开始识别的时间点，需在界面提示用户说话。
                 case VoiceRecognitionClient.CLIENT_STATUS_START_RECORDING:
-
                     break;
                 case VoiceRecognitionClient.CLIENT_STATUS_SPEECH_START: // 检测到语音起点
-
                     break;
                 // 已经检测到语音终点，等待网络返回
                 case VoiceRecognitionClient.CLIENT_STATUS_SPEECH_END:
                     break;
                 // 语音识别完成，显示obj中的结果
                 case VoiceRecognitionClient.CLIENT_STATUS_FINISH:
+                    if (obj != null && obj instanceof List) {
+                        List results = (List) obj;
+                        if (results.size() > 0) {
+                            String temp_str = results.get(0).toString();
+                            Log.v(TAG, "CLIENT_STATUS_FINISH:" + temp_str);
+                            RecognizeData recognizeData = new Gson().fromJson(temp_str, RecognizeData.class);
+                            echoRecorgByAction(recognizeData);
+                        }
+                    }
                     updateRecognitionResult(obj);
-                    break;
-                // 处理连续上屏
-                case VoiceRecognitionClient.CLIENT_STATUS_UPDATE_RESULTS:
-                    updateRecognitionResult(obj);
+                    postStarRecorg();
                     break;
                 // 用户取消
                 case VoiceRecognitionClient.CLIENT_STATUS_USER_CANCELED:
@@ -136,7 +174,8 @@ public class RecognizeService extends Service implements RecognizeServiceHandler
 
         @Override
         public void onError(int errorType, int errorCode) {
-            setResult();
+            setResult("onError:errorType:" + errorType);
+            postStarRecorg();
         }
 
         @Override
@@ -150,33 +189,6 @@ public class RecognizeService extends Service implements RecognizeServiceHandler
 
     private void setResult(String result) {
 
-    }
-
-    public boolean onStartListening() {
-        VoiceRecognitionConfig config = new VoiceRecognitionConfig();
-        config.setProp(Config.CURRENT_PROP);
-        config.setLanguage(Config.getCurrentLanguage());
-        config.enableContacts(); // 启用通讯录
-        config.enableVoicePower(Config.SHOW_VOL); // 音量反馈。
-        if (Config.PLAY_START_SOUND) {
-            config.enableBeginSoundEffect(R.raw.bdspeech_recognition_start); // 设置识别开始提示音
-        }
-        if (Config.PLAY_END_SOUND) {
-            config.enableEndSoundEffect(R.raw.bdspeech_speech_end); // 设置识别结束提示音
-        }
-        config.setSampleRate(VoiceRecognitionConfig.SAMPLE_RATE_8K); // 设置采样率,需要与外部音频一致
-        // 下面发起识别
-        int code = mASREngine.startVoiceRecognition(mListener, config);
-        if (code != VoiceRecognitionClient.START_WORK_RESULT_WORKING) {
-            setResult(getString(R.string.error_start));
-        }
-
-        return code == VoiceRecognitionClient.START_WORK_RESULT_WORKING;
-    }
-
-    public boolean onCancel() {
-        mASREngine.stopVoiceRecognition();
-        return true;
     }
 
 
@@ -212,19 +224,4 @@ public class RecognizeService extends Service implements RecognizeServiceHandler
         Log.d(TAG, "----" + msg);
     }
 
-
-    /**
-     * 上传通讯录
-     */
-    private void uploadContacts() {
-        DataUploader dataUploader = new DataUploader(RecognizeService.this);
-        dataUploader.setApiKey(Constants.API_KEY, Constants.SECRET_KEY);
-
-        String jsonString = "[{\"name\":\"兆维\", \"frequency\":1}, {\"name\":\"林新汝\", \"frequency\":2}]";
-        try {
-            dataUploader.uploadContactsData(jsonString.getBytes("utf-8"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

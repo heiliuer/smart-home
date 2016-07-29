@@ -1,95 +1,29 @@
 ECLIPSE ANDROID PROJECT IMPORT SUMMARY
 ======================================
 
-Manifest Merging:
------------------
-Your project uses libraries that provide manifests, and your Eclipse
-project did not explicitly turn on manifest merging. In Android Gradle
-projects, manifests are always merged (meaning that contents from your
-libraries' manifests will be merged into the app manifest. If you had
-manually copied contents from library manifests into your app manifest
-you may need to remove these for the app to build correctly.
-
 Ignored Files:
 --------------
 The following files were *not* copied into the new Gradle project; you
 should evaluate whether these are still needed in your project and if
 so manually move them:
 
-From _MyLibrary:
-* _MyLibrary.iml
-* build.gradle
-* hs_err_pid2952.log
-* hs_err_pid5424.log
-* ic_launcher-web.png
 * proguard-project.txt
-From _UtilsLibrary:
-* _UtilsLibrary.iml
-* build.gradle
-From 智能家居1（蓝牙2.0）:
-* .idea\
-* .idea\.name
-* .idea\compiler.xml
-* .idea\copyright\
-* .idea\copyright\profiles_settings.xml
-* .idea\misc.xml
-* .idea\modules.xml
-* .idea\vcs.xml
-* .idea\workspace.xml
-* .idea\智能家居1（蓝牙2.0）.iml
-* ic_launcher-web.png
-* proguard-project.txt
-* 用例图-0设备检测系统.ucd
-* 用例图-1驱动解析系统.ucd
-
-Replaced Jars with Dependencies:
---------------------------------
-The importer recognized the following .jar files as third party
-libraries and replaced them with Gradle dependencies instead. This has
-the advantage that more explicit version information is known, and the
-libraries can be updated automatically. However, it is possible that
-the .jar file in your project was of an older version than the
-dependency we picked, which could render the project not compileable.
-You can disable the jar replacement in the import wizard and try again:
-
-android-support-v4.jar => com.android.support:support-v4:19.1.0
-gson-2.2.4.jar => com.google.code.gson:gson:2.2.4
-
-Potentially Missing Dependency:
--------------------------------
-When we replaced the following .jar files with a Gradle dependency, we
-inferred the dependency version number from the filename. This
-specific version may not actually be available from the repository.
-If you get a build error stating that the dependency is missing, edit
-the version number to for example "+" to pick up the latest version
-instead. (This may require you to update your code if the library APIs
-have changed.)
-
-gson-2.2.4.jar => version 2.2.4 in com.google.code.gson:gson:2.2.4
 
 Moved Files:
 ------------
 Android Gradle projects use a different directory structure than ADT
 Eclipse projects. Here's how the projects were restructured:
 
-In _MyLibrary:
-* AndroidManifest.xml => _MyLibrary\src\main\AndroidManifest.xml
-* assets\ => _MyLibrary\src\main\assets
-* lint.xml => _MyLibrary\lint.xml
-* res\ => _MyLibrary\src\main\res\
-* src\ => _MyLibrary\src\main\java\
-In _UtilsLibrary:
-* AndroidManifest.xml => _UtilsLibrary\src\main\AndroidManifest.xml
-* assets\ => _UtilsLibrary\src\main\assets
-* res\ => _UtilsLibrary\src\main\res\
-* src\ => _UtilsLibrary\src\main\java\
-In 智能家居1（蓝牙2.0）:
-* AndroidManifest.xml => 智能家居1蓝牙20\src\main\AndroidManifest.xml
-* assets\ => 智能家居1蓝牙20\src\main\assets\
-* libs\CH34xDriver.jar => 智能家居1蓝牙20\libs\CH34xDriver.jar
-* lint.xml => 智能家居1蓝牙20\lint.xml
-* res\ => 智能家居1蓝牙20\src\main\res\
-* src\ => 智能家居1蓝牙20\src\main\java\
+* AndroidManifest.xml => bDIntegrationSDK_LibProject\src\main\AndroidManifest.xml
+* assets\ => bDIntegrationSDK_LibProject\src\main\assets
+* libs\armeabi\libBDVoiceRecognitionClient_MFE_V1.so => bDIntegrationSDK_LibProject\src\main\jniLibs\armeabi\libBDVoiceRecognitionClient_MFE_V1.so
+* libs\Baidu-SpeechRecognitionUI-SDK-Android-1.6.2.jar => bDIntegrationSDK_LibProject\libs\Baidu-SpeechRecognitionUI-SDK-Android-1.6.2.jar
+* libs\galaxy.jar => bDIntegrationSDK_LibProject\libs\galaxy.jar
+* libs\mips\libBDVoiceRecognitionClient_MFE_V1.so => bDIntegrationSDK_LibProject\src\main\jniLibs\mips\libBDVoiceRecognitionClient_MFE_V1.so
+* libs\VoiceRecognition-1.6.2.jar => bDIntegrationSDK_LibProject\libs\VoiceRecognition-1.6.2.jar
+* libs\x86\libBDVoiceRecognitionClient_MFE_V1.so => bDIntegrationSDK_LibProject\src\main\jniLibs\x86\libBDVoiceRecognitionClient_MFE_V1.so
+* res\ => bDIntegrationSDK_LibProject\src\main\res\
+* src\ => bDIntegrationSDK_LibProject\src\main\java
 
 Next Steps:
 -----------

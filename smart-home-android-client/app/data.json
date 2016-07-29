@@ -1,0 +1,10 @@
+{
+  "item": [
+    "开灯",
+    "开车",
+    "开的",
+    "开得",
+    "开着"
+  ],
+  "json_res": "{\"parsed_text\":\"开灯\",\"raw_text\":\"开灯\",\"results\":[{\"domain\":\"setting\",\"intent\":\"set\",\"object\":{\"_settingtype_on\":\"灯\",\"settingtype\":\"flashlight_on\"},\"score\":0.950}]}\n"
+}

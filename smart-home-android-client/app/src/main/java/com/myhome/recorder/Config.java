@@ -95,12 +95,12 @@ public class Config {
     /**
      * 播放开始音
      */
-    public static boolean PLAY_START_SOUND = true;
+    public static boolean PLAY_START_SOUND = false;
 
     /**
      * 播放结束音
      */
-    public static boolean PLAY_END_SOUND = true;
+    public static boolean PLAY_END_SOUND = false;
     
     /**
      * 对话框提示音
@@ -110,6 +110,6 @@ public class Config {
     /**
      * 显示音量
      */
-    public static boolean SHOW_VOL = true;
+    public static boolean SHOW_VOL = false;
 
 }

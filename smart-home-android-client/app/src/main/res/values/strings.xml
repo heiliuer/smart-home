@@ -32,5 +32,6 @@
     <string name="lan_ctrl">控制</string>
     <string name="share">分享</string>
     <string name="open_url">打开链接</string>
+    <string name="error_start">语音识别启动失败</string>
 
 </resources>

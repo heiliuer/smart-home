@@ -1,54 +1,72 @@
+
 package com.myhome.recorder.json;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Result {
-    private long corpus_no;
 
-    private long err_no;
+    @SerializedName("domain")
+    @Expose
+    private String domain;
+    @SerializedName("intent")
+    @Expose
+    private String intent;
+    @SerializedName("object")
+    @Expose
+    private RObject object;
+    @SerializedName("score")
+    @Expose
+    private Double score;
 
-    private long idx;
-
-    private long res_type;
-
-    private String sn;
-
-    public void setCorpus_no(long corpus_no) {
-        this.corpus_no = corpus_no;
+    /**
+     * @return The domain
+     */
+    public String getDomain() {
+        return domain;
     }
 
-    public long getCorpus_no() {
-        return this.corpus_no;
+    /**
+     * @param domain The domain
+     */
+    public void setDomain(String domain) {
+        this.domain = domain;
     }
 
-    public void setErr_no(long err_no) {
-        this.err_no = err_no;
+    /**
+     * @return The intent
+     */
+    public String getIntent() {
+        return intent;
     }
 
-    public long getErr_no() {
-        return this.err_no;
+    /**
+     * @param intent The intent
+     */
+    public void setIntent(String intent) {
+        this.intent = intent;
     }
 
-    public void setIdx(long idx) {
-        this.idx = idx;
+    public RObject getObject() {
+        return object;
     }
 
-    public long getIdx() {
-        return this.idx;
+    public void setObject(RObject object) {
+        this.object = object;
     }
 
-    public void setRes_type(long res_type) {
-        this.res_type = res_type;
+    /**
+     * @return The score
+     */
+    public Double getScore() {
+        return score;
     }
 
-    public long getRes_type() {
-        return this.res_type;
-    }
-
-    public void setSn(String sn) {
-        this.sn = sn;
-    }
-
-    public String getSn() {
-        return this.sn;
+    /**
+     * @param score The score
+     */
+    public void setScore(Double score) {
+        this.score = score;
     }
 
 }

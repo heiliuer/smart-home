@@ -1,24 +1,47 @@
+
 package com.myhome.recorder.json;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class RecognizeData {
-    private Content content;
 
-    private Result result;
+    @SerializedName("item")
+    @Expose
+    private List<String> item = new ArrayList<String>();
+    @SerializedName("json_res")
+    @Expose
+    private String jsonRes;
 
-    public void setContent(Content content) {
-        this.content = content;
+    /**
+     * @return The item
+     */
+    public List<String> getItem() {
+        return item;
     }
 
-    public Content getContent() {
-        return this.content;
+    /**
+     * @param item The item
+     */
+    public void setItem(List<String> item) {
+        this.item = item;
     }
 
-    public void setResult(Result result) {
-        this.result = result;
+    /**
+     * @return The jsonRes
+     */
+    public String getJsonRes() {
+        return jsonRes;
     }
 
-    public Result getResult() {
-        return this.result;
+    /**
+     * @param jsonRes The json_res
+     */
+    public void setJsonRes(String jsonRes) {
+        this.jsonRes = jsonRes;
     }
 
 }

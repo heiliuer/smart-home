@@ -24,11 +24,9 @@ dependencies {
     compile 'com.android.support:support-v4:19.1.0'
     compile 'com.google.code.gson:gson:2.2.4'
     compile files('libs/CH34xDriver.jar')
+    compile files('libs/VoiceRecognition.jar')
     compile files('libs/jetty-8.1.15.jar')
     compile files('libs/zxing-core-1.7.jar')
-    compile files('libs/VoiceRecognition-2.0.1.jar')
     compile files('libs/lite-common-1.1.3.jar')
-    // http://mvnrepository.com/artifact/com.google.guava/guava
-    compile group: 'com.google.guava', name: 'guava', version: '19.0'
-
+    compile 'com.google.guava:guava:19.0'
 }
