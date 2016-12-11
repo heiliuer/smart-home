@@ -5,3 +5,6 @@
 /smart-home-android-client/build
 /smart-home-android-client/gradle
 /smart-home-android-client/_MyLibrary/build
+/smart-home-android-client/_MyLibrary/_MyLibrary.iml
+/smart-home-android-client/_UtilsLibrary/_UtilsLibrary.iml
+/smart-home-android-client/app/app.iml
