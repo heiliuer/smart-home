@@ -5,5 +5,10 @@
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
         android:title="@string/share"/>
+    <item
+        android:id="@+id/menu_refresh"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:title="@string/refresh"/>
 
 </menu>

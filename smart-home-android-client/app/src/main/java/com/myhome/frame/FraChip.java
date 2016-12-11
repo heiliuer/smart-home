@@ -119,31 +119,9 @@ public class FraChip extends InjectFragment implements OnDataIOListener {
             final Integer type = Integer.parseInt(editCmdType.getText()
                     .toString().trim());
             int btnId = 0;
-            switch (type) {
-                case 0:
-                    btnId = R.id.send_p0_ff;
-                    break;
-                case 1:
-                    btnId = R.id.send_p0_00;
-                    break;
-                case 2:
-                    btnId = R.id.send_p1_ff;
-                    break;
-                case 3:
-                    btnId = R.id.send_p1_00;
-                    break;
-                case 4:
-                    btnId = R.id.send_p2_ff;
-                    break;
-                case 5:
-                    btnId = R.id.send_p2_00;
-                    break;
-                case 6:
-                    btnId = R.id.send_p3_ff;
-                    break;
-                case 7:
-                    btnId = R.id.send_p3_00;
-                    break;
+            View btn = getView().findViewWithTag(type.toString());
+            if (btn != null) {
+                btnId = btn.getId();
             }
             if (btnId != 0) {
                 final int toClickBtn = btnId;
@@ -209,6 +187,31 @@ public class FraChip extends InjectFragment implements OnDataIOListener {
     @Override
     public void onWriteData(byte[] datas) {
     }
+
+
+    private Integer getIntFromViewTag(View v) {
+        Object tag = v.getTag();
+        if (tag != null) {
+            try {
+                return Integer.parseInt(tag.toString());
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    @OnLongClick({R.id.send_p0_00, R.id.send_p0_ff, R.id.send_p1_00,
+            R.id.send_p1_ff, R.id.send_p2_00, R.id.send_p2_ff, R.id.send_p3_00,
+            R.id.send_p3_ff, R.id.switch_p10, R.id.switch_p11, R.id.switch_p12, R.id.switch_p13})
+    public boolean onSendOnLongClick(View v) {
+        Integer order = getIntFromViewTag(v);
+        if (order != null) {
+            editCmdType.setText(order.toString());
+        }
+        return true;
+    }
+
 
     @OnClick({R.id.send_p0_00, R.id.send_p0_ff, R.id.send_p1_00,
             R.id.send_p1_ff, R.id.send_p2_00, R.id.send_p2_ff, R.id.send_p3_00,

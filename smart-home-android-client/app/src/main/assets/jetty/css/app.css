@@ -28,3 +28,8 @@
     display: none;
 }
 .top_error p{text-align: center;color: #fff;background-color: #e64340;}
+.p-center{
+color: #5d5d5d;
+    text-align: center;
+    font-size: 14px;
+    text-decoration: underline;}

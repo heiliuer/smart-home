@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -9,7 +9,7 @@
         android:layout_gravity="center"
         android:focusableInTouchMode="true"
         android:gravity="center"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/txt_time"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:focusableInTouchMode="true"
             android:gravity="center"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/edit_hours"
@@ -86,109 +86,121 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/send_p0_ff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="0"
                 android:text="0send_p0_ff" />
 
             <Button
                 android:id="@+id/send_p0_00"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="1"
                 android:text="1send_p0_00" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/send_p1_ff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="2"
                 android:text="2send_p1_ff" />
 
             <Button
                 android:id="@+id/send_p1_00"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="3"
                 android:text="3send_p1_00" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/send_p2_ff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="4"
                 android:text="4send_p2_ff" />
 
             <Button
                 android:id="@+id/send_p2_00"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="5"
                 android:text="5send_p2_00" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/send_p3_ff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="6"
                 android:text="6send_p3_ff" />
 
             <Button
                 android:id="@+id/send_p3_00"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="7"
                 android:text="7send_p3_00" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/switch_p10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="p10" />
+                android:tag="8"
+                android:text="8\np10" />
 
             <Button
                 android:id="@+id/switch_p11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="p11" />
+                android:tag="9"
+                android:text="9\np11" />
 
             <Button
                 android:id="@+id/switch_p12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="p12" />
+                android:tag="10"
+                android:text="10\np12" />
 
             <Button
                 android:id="@+id/switch_p13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="p13" />
+                android:tag="11"
+                android:text="11\np13" />
         </LinearLayout>
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/txt_tasks"

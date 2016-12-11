@@ -73,7 +73,15 @@ public class FraWebview extends InjectFragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        showQrcodeDialog();
+        switch (item.getItemId()){
+            case R.id.menu_add_device:
+                showQrcodeDialog();
+                break;
+            case R.id.menu_refresh:
+                webView.reload();
+                break;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
